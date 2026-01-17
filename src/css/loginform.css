@@ -1,0 +1,20 @@
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  gap: 2rem;
+}
+
+.login-container::before {
+  display: block;
+  content: "";
+  background: url("../assets/gamejpg.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+}

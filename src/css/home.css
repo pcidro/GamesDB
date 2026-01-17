@@ -1,0 +1,76 @@
+.container-home {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 60px;
+}
+
+.grid-games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  list-style-type: none;
+}
+
+.img-card {
+  max-width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.game-card {
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  max-width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.container-home h1 {
+  font-size: 42px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #0ef7a9 0%, #00dc91 70%, #022e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(0, 222, 147, 0.35);
+  letter-spacing: 1px;
+}
+
+.game-card:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(0, 222, 147, 0.2),
+    0 0 0 2px rgba(0, 222, 147, 0.3);
+}
+
+.game-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  color: #00de93;
+  margin-bottom: 12px;
+  text-align: center;
+  margin-top: 10px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.game-card button {
+  margin-top: auto;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #00de93, #00b377);
+  color: #0f0f1e;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 222, 147, 0.3);
+}
