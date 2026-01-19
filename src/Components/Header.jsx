@@ -7,11 +7,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../GlobalContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import Logout from "../assets/logout.svg?react";
 
 const Header = () => {
-  const [search, setSearch] = useState("");
+  const { search, setSearch, setQuery } = useContext(GlobalContext);
   const { usuario, loading } = useContext(GlobalContext);
   const navigate = useNavigate();
+
+  function handleHome(e) {
+    e.preventDefault();
+    setSearch("");
+    setQuery("");
+    navigate("/");
+  }
 
   function handleLogout() {
     try {
@@ -26,7 +34,7 @@ const Header = () => {
     <div className="header-bg">
       <header className="header-container">
         <div>
-          <Link className="gamevault-logo" to="/">
+          <Link className="gamevault-logo" to="/" onClick={handleHome}>
             GAME<span className="vault-destaque">VAULT</span>
           </Link>
           <p className="subtitle-header">
@@ -52,6 +60,7 @@ const Header = () => {
         )}
         {usuario && (
           <button onClick={handleLogout} className="logout">
+            <Logout />
             Sair
           </button>
         )}

@@ -7,6 +7,8 @@ export const GlobalContext = React.createContext();
 export const GlobalStorage = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const login = onAuthStateChanged(auth, (user) => {
@@ -21,7 +23,9 @@ export const GlobalStorage = ({ children }) => {
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ usuario, loading }}>
+    <GlobalContext.Provider
+      value={{ usuario, loading, search, setSearch, query, setQuery }}
+    >
       {children}
     </GlobalContext.Provider>
   );

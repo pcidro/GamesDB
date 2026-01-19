@@ -74,3 +74,18 @@
     justify-content: center;
   }
 }
+
+.logout {
+  border: none;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background-color: #dfdede;
+}

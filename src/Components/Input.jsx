@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import SearchIcon from "../assets/search.svg?react";
 import "../css/input.css";
+import { GlobalContext } from "../GlobalContext";
 
 const Input = ({ value, onChange, placeholder }) => {
+  const { setQuery } = useContext(GlobalContext);
+  function handleSubmit(e) {
+    e.preventDefault();
+    setQuery(value);
+  }
+
   return (
-    <div className="search-wrapper">
-      <SearchIcon className="search-icon-img" />
+    <form onClick={handleSubmit} className="search-wrapper">
+      <button type="submit" className="search-button-style">
+        <SearchIcon className="search-icon-img" />
+      </button>
       <input
         type="text"
         className="search-input-field"
@@ -13,7 +22,7 @@ const Input = ({ value, onChange, placeholder }) => {
         value={value}
         onChange={onChange}
       />
-    </div>
+    </form>
   );
 };
 
