@@ -1,0 +1,36 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+.not-found-title {
+  font-size: 4rem;
+  margin: 0;
+  color: #333;
+}
+
+.not-found-text {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.home-button {
+  text-decoration: none;
+  color: #00e495;
+  border: 2px solid #00e495;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #00e495;
+  color: white;
+}
