@@ -5,6 +5,13 @@ import { Link } from "react-router-dom";
 
 const Mygames = () => {
   const [games, setGames] = useState([]);
+  const [searchGame, setSearchGame] = useState("");
+
+  const filteredGames = games.filter((game) => {
+    return game.name.toLowerCase().trim().includes(searchGame.toLowerCase());
+  });
+
+  useEffect(() => {});
 
   useEffect(() => {
     const minhaLista = localStorage.getItem("@games");
@@ -22,21 +29,35 @@ const Mygames = () => {
       <h1>Meus jogos</h1>
 
       {games.length === 0 && (
-        <p>
+        <p className="nenhum-jogo">
           Você não possui nenhum jogo salvo.{" "}
           <Link to="/">Salve algum jogo!</Link>{" "}
         </p>
       )}
-      <ul>
-        {games.map((game) => (
-          <li key={game.id}>
-            <span>{game.name}</span>
-            <div>
-              <Link to={`/jogo/${game.id}`}>Ver detalhes do jogo</Link>
+
+      <input
+        type="text"
+        placeholder="Buscar jogo..."
+        value={searchGame}
+        onChange={(e) => setSearchGame(e.target.value)}
+        className="search-input"
+      />
+      <ul className="my-games-grid">
+        {filteredGames.map((game) => (
+          <li className="my-game-card" key={game.id}>
+            <img
+              src={game.background_image_additional}
+              alt={`Capa do jogo ${game.name}`}
+            />
+            <div className="mygame-card-content">
+              <h3>{game.name}</h3>
+              <div className="card-actions">
+                <Link to={`/jogo/${game.id}`}>Ver detalhes do jogo</Link>
+                <button onClick={() => removefromList(game.id)}>
+                  Remover da lista
+                </button>
+              </div>
             </div>
-            <button onClick={() => removefromList(game.id)}>
-              Remover da lista
-            </button>
           </li>
         ))}
       </ul>
