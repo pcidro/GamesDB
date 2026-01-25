@@ -1,7 +1,7 @@
 import React from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 
 const LoginCreate = () => {
@@ -93,6 +93,11 @@ const LoginCreate = () => {
           <button className="entrar">
             {loading ? "Cadastrando..." : "Cadastrar"}
           </button>
+          <div className="cadastre-se">
+            <p>
+              Já tem Login? <Link to="/login">Fazer Login</Link>
+            </p>
+          </div>
         </form>
       </div>
     </section>

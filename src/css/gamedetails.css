@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
 .game-hero {
   position: relative;
   height: 100vh;
@@ -6,7 +10,15 @@
   justify-content: center;
   background-color: #0f0f1e;
   overflow: hidden;
-  font-family: "Inter", sans-serif;
+}
+
+.carregando-jogo {
+  font-weight: 600;
+  color: #00faa8;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .hero-background {
@@ -53,6 +65,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  font-family: "Poppins";
 }
 
 .badges {
@@ -90,6 +103,7 @@
   background: linear-gradient(90deg, #ffffff, #b0b0cc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: "Playfair Display";
 }
 
 .infos {
@@ -113,6 +127,7 @@
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+  font-family: "Poppins";
 }
 
 .btn-add,
@@ -126,6 +141,8 @@
   font-size: 0.9rem;
   letter-spacing: 1px;
   transition: all 0.3s;
+  font-family: "Poppins";
+  cursor: pointer;
 }
 
 .btn-add {
@@ -171,6 +188,7 @@
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   border: 1px dashed rgba(255, 255, 255, 0.1);
+  font-family: "Poppins";
 }
 
 .login-message a {

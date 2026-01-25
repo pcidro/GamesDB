@@ -15,6 +15,7 @@
   font-size: 14px;
   transition: all 0.3s ease;
   min-width: 300px;
+  font-family: Poppins;
 }
 
 .search-input-field:focus {

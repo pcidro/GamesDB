@@ -6,7 +6,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding-top: 60px;
-  font-family: "Poppins", sans-serif;
+  width: 90%;
 }
 
 .loading {
@@ -20,7 +20,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-
   list-style-type: none;
 }
 
@@ -41,6 +40,7 @@
     box-shadow 0.3s ease;
   aspect-ratio: 3/4;
   cursor: pointer;
+  font-family: "Poppins";
 }
 
 .game-card:hover {
@@ -58,6 +58,7 @@
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 20px rgba(0, 222, 147, 0.35);
   letter-spacing: 1px;
+  font-family: "Playfair Display";
 }
 
 .container-home h1::after {
@@ -102,6 +103,7 @@
   box-shadow: 0 4px 12px rgba(0, 222, 147, 0.3);
   margin-left: 30px;
   margin-top: 10px;
+  font-family: "Poppins";
 }
 
 .image-container {
@@ -182,4 +184,26 @@
 .btn-details:hover {
   background: #fff;
   color: #00de93;
+}
+
+@media (max-width: 600px) {
+  .btn-details {
+    opacity: 1;
+  }
+  .grid-games {
+    gap: 15px;
+  }
+
+  .container-home {
+    padding-top: 30px;
+  }
+
+  .card-content {
+    transform: translateY(0);
+  }
+
+  .container-home h1 {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
 }

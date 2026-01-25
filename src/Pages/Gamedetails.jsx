@@ -5,12 +5,14 @@ import { loadGame } from "../api";
 import { Link } from "react-router-dom";
 import "../css/gamedetails.css";
 import { GlobalContext } from "../GlobalContext";
+import Modal from "../Components/Modal";
 
 const Gamedetails = () => {
   const { id } = useParams();
   const [game, setGame] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
   const { usuario, loading } = useContext(GlobalContext);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const minhaLista = localStorage.getItem("@games");
@@ -105,7 +107,9 @@ const Gamedetails = () => {
                     Adcionar aos meus jogos
                   </button>
                 )}
-                <Link className="btn-rank">Rankear Jogo</Link>
+                <button onClick={() => setOpenModal(true)} className="btn-rank">
+                  Rankear Jogo
+                </button>
               </>
             ) : (
               <p className="login-message">
@@ -114,6 +118,10 @@ const Gamedetails = () => {
                 jogos.
               </p>
             )}
+            <Modal onClose={() => setOpenModal(false)} isOpen={openModal}>
+              <h2>O que você achou de {game.name}? </h2>
+              <p>Teste modal</p>
+            </Modal>
           </div>
         </div>
       </div>
