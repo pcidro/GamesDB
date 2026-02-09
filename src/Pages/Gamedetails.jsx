@@ -14,12 +14,22 @@ const Gamedetails = () => {
   const [isSaved, setIsSaved] = useState(false);
   const { usuario, loading } = useContext(GlobalContext);
   const [openModal, setOpenModal] = useState(false);
+  const [userRating, setUserRating] = useState(0);
 
   useEffect(() => {
     const minhaLista = localStorage.getItem("@games");
     const gamesSalvos = JSON.parse(minhaLista) || [];
-    const hasGame = gamesSalvos.some((gameSalvo) => gameSalvo.id === game?.id);
-    setIsSaved(hasGame);
+    const gameSalvo = gamesSalvos.find((g) => g.id === game?.id);
+
+    if (gameSalvo) {
+      setIsSaved(true);
+      if (gameSalvo.userRating) {
+        setUserRating(gameSalvo.userRating);
+      }
+    } else {
+      setIsSaved(false);
+      setUserRating(0);
+    }
   }, [game]);
 
   useEffect(() => {
@@ -63,6 +73,24 @@ const Gamedetails = () => {
     alert("Jogo removido da lista!");
   }
 
+  function handleRating() {
+    const minhaLista = localStorage.getItem("@games");
+    let gamesSalvos = JSON.parse(minhaLista) || [];
+    const index = gamesSalvos.findIndex((g) => g.id === game.id);
+
+    if (index !== -1) {
+      gamesSalvos[index].userRating = userRating;
+    } else {
+      const novoJogoComNota = { ...game, userRating: userRating };
+      gamesSalvos.push(novoJogoComNota);
+      setIsSaved(true);
+    }
+
+    localStorage.setItem("@games", JSON.stringify(gamesSalvos));
+    setOpenModal(false);
+    alert("Avaliação salva!");
+  }
+
   if (loading) return null;
   return (
     <section className="game-hero">
@@ -78,8 +106,16 @@ const Gamedetails = () => {
                 {genre.name}
               </span>
             ))}
+
             {game.rating && (
               <span className="badge rating">{game.rating} ★</span>
+            )}
+            {userRating > 0 && (
+              <div className="user-evaluation">
+                <span>
+                  Sua avaliação: <strong>{userRating} / 5</strong>
+                </span>
+              </div>
             )}
           </div>
           <h1>{game.name}</h1>
@@ -124,9 +160,11 @@ const Gamedetails = () => {
                 O que você achou de {game.name}?{" "}
               </h2>
               <div>
-                <Stars />
+                <Stars value={userRating} onChange={setUserRating} />
               </div>
-              <button className="btn-avaliar">Enviar avaliação</button>
+              <button onClick={handleRating} className="btn-avaliar">
+                Enviar avaliação
+              </button>
             </Modal>
           </div>
         </div>

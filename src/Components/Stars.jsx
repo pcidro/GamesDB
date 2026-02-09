@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Box, Rating, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 
-const Stars = () => {
-  const [value, setValue] = useState(0);
+const Stars = ({ value, onChange }) => {
   const [hover, setHover] = useState(-1);
 
   const labels = {
@@ -41,7 +40,7 @@ const Stars = () => {
         name="feedback-stars"
         value={value}
         precision={0.5}
-        onChange={(event, newValue) => setValue(newValue)}
+        onChange={(event, newValue) => onChange(newValue)}
         onChangeActive={(event, newHover) => setHover(newHover)}
         emptyIcon={<StarIcon style={{ opacity: 0.25 }} fontSize="inherit" />}
         sx={{
