@@ -36,7 +36,7 @@ const Header = () => {
       <header className="header-container">
         <div>
           <Link className="gamevault-logo" to="/" onClick={handleHome}>
-            GAME<span className="vault-destaque">VAULT</span>
+            GAMES<span className="vault-destaque">DB</span>
           </Link>
           <p className="subtitle-header">
             Adcione e ranqueie seus jogos favoritos
