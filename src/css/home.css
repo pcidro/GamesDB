@@ -213,7 +213,6 @@
   display: flex;
   justify-content: center;
   margin-bottom: 60px;
-  gap: 30px;
   align-items: center;
 }
 
@@ -231,6 +230,10 @@
   margin-left: 20px;
   transform: translateY(10px);
   transition: all 0.3s ease;
+}
+
+.pagination .page-btn-active {
+  background-color: rgb(243, 207, 3);
 }
 
 .pagination button:hover {

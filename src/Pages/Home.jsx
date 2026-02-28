@@ -10,6 +10,7 @@ const Home = () => {
   const location = useLocation();
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [totalGames, setTotalGames] = useState(0);
   const { query, page, setPage } = useContext(GlobalContext);
   useEffect(() => {
     if (location.pathname === "/") {
@@ -25,7 +26,11 @@ const Home = () => {
         } else {
           data = await getPopularGames(page);
         }
-        if (data) setGames(data.results);
+        if (data) {
+          setGames(data.results);
+          setTotalGames(data.count);
+        }
+
         window.scrollTo(0, 0);
       } catch (error) {
         console.error("erro ao buscar os jogos", error);
@@ -35,6 +40,26 @@ const Home = () => {
     }
     fetchGames();
   }, [query, page]);
+
+  const renderPagination = () => {
+    const pageSize = 30;
+    const totalPages = Math.min(Math.ceil(totalGames / pageSize), 100);
+    const pages = [];
+    let startPage = Math.max(1, page - 2);
+    let endPage = Math.min(totalPages, startPage + 4);
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <button
+          key={i}
+          onClick={() => setPage(i)}
+          className={page === i ? "page-btn-active" : "page-btn"}
+        >
+          {i}
+        </button>,
+      );
+    }
+    return pages;
+  };
 
   if (loading) {
     return <div className="loading">Carregando jogos...</div>;
@@ -66,10 +91,11 @@ const Home = () => {
       </ul>
       <div className="pagination">
         <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-          Anterior
+          &laquo;
         </button>
+        {renderPagination()}
 
-        <button onClick={() => setPage(page + 1)}>Próxima</button>
+        <button onClick={() => setPage(page + 1)}>&raquo;</button>
       </div>
     </div>
   );
