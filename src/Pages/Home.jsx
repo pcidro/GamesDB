@@ -4,12 +4,18 @@ import { getPopularGames } from "../api";
 import "../css/home.css";
 import { GlobalContext } from "../GlobalContext";
 import { searchGames } from "../api";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Home = () => {
+  const location = useLocation();
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { query } = useContext(GlobalContext);
+  const { query, page, setPage } = useContext(GlobalContext);
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setPage(1);
+    }
+  }, [location.pathname]);
   useEffect(() => {
     async function fetchGames() {
       let data;
@@ -17,9 +23,10 @@ const Home = () => {
         if (query) {
           data = await searchGames(query);
         } else {
-          data = await getPopularGames();
+          data = await getPopularGames(page);
         }
-        if (data) setGames(data);
+        if (data) setGames(data.results);
+        window.scrollTo(0, 0);
       } catch (error) {
         console.error("erro ao buscar os jogos", error);
       } finally {
@@ -27,7 +34,7 @@ const Home = () => {
       }
     }
     fetchGames();
-  }, [query]);
+  }, [query, page]);
 
   if (loading) {
     return <div className="loading">Carregando jogos...</div>;
@@ -57,6 +64,13 @@ const Home = () => {
           </li>
         ))}
       </ul>
+      <div className="pagination">
+        <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+          Anterior
+        </button>
+
+        <button onClick={() => setPage(page + 1)}>Próxima</button>
+      </div>
     </div>
   );
 };
