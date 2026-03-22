@@ -42,7 +42,7 @@ const Home = () => {
   }, [query, page]);
 
   const renderPagination = () => {
-    const pageSize = 30;
+    const pageSize = 21;
     const totalPages = Math.min(Math.ceil(totalGames / pageSize), 100);
     const pages = [];
     let startPage = Math.max(1, page - 2);

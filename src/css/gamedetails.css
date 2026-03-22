@@ -1,235 +1,440 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-
-.game-hero {
+.game-details-section {
   position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #0f0f1e;
+  min-height: 100vh;
+  background-color: #0f0f0f;
+  color: #ffffff;
+}
+
+.game-background-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
   overflow: hidden;
 }
 
-.carregando-jogo {
-  font-weight: 600;
-  color: #00faa8;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.hero-background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.hero-background img {
+.game-background-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(1px) brightness(0.4);
-  transform: scale(1.1);
+  object-position: center;
 }
 
-.hero-overlay {
+.game-background-overlay {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    0deg,
-    #0f0f1e 0%,
-    rgba(15, 15, 30, 0.6) 50%,
-    rgba(15, 15, 30, 0.2) 100%
+    to bottom,
+    rgba(15, 15, 15, 0.3),
+    rgba(15, 15, 15, 0.8)
   );
 }
 
-.content-wrapper {
+.game-details-container {
   position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 1200px;
-  padding: 6rem 2rem;
-  display: grid;
-  padding-bottom: 180px;
-  grid-template-columns: 1fr 1fr;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px;
 }
 
-.game-info {
+.game-details-content {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+.game-poster-wrapper {
+  position: sticky;
+  top: 80px;
+}
+
+.game-poster {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  object-fit: cover;
+  display: block;
+}
+
+.game-info-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  font-family: "Poppins";
+  gap: 32px;
 }
 
-.badges {
+.game-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.game-ratings {
   display: flex;
-  gap: 0.8rem;
+  gap: 32px;
   align-items: center;
 }
 
-.badge {
-  background: rgba(255, 255, 255, 0.1);
-  color: #e0e0e0;
-  padding: 0.4rem 1rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
+.rating-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rating-label {
+  font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.badge.rating {
-  background: #00ffa1;
-  color: #0f0f1e;
-  font-weight: 800;
-  border: none;
-}
-
-.game-info h1 {
-  font-size: 4rem;
-  line-height: 1;
-  font-weight: 900;
   color: #ffffff;
-  text-transform: uppercase;
-  margin: 0;
-  background: linear-gradient(90deg, #ffffff, #b0b0cc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-family: "Playfair Display";
 }
 
-.infos {
+.rating-value {
   display: flex;
-  gap: 2rem;
-  color: #b0b0cc;
-  font-size: 0.95rem;
-  border-left: 3px solid #00ffa1;
-  padding-left: 1rem;
+  align-items: baseline;
+  gap: 6px;
 }
 
-.description {
-  color: #cccccc;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  max-width: 600px;
-  margin-bottom: 1rem;
+.rating-star {
+  font-size: 24px;
+  color: #00e997;
 }
 
-.actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-  font-family: "Poppins";
-}
-
-.btn-add,
-.btn-rank,
-.btn-remove {
-  padding: 1rem 2.5rem;
-  border-radius: 8px;
+.rating-number {
+  font-size: 28px;
   font-weight: 700;
-  text-decoration: none;
+  color: #ffffff;
+}
+
+.user-rating-star {
+  font-size: 24px;
+  color: #00e997;
+}
+
+.user-rating-number {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.rating-max {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.game-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.genre-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.genre-badge:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.game-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  transition: all 0.3s;
-  font-family: "Poppins";
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.meta-value {
+  font-size: 15px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.game-description {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin: 0;
+  max-width: 800px;
+}
+
+.game-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.btn-add-game,
+.btn-remove-game,
+.btn-rate-game {
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.btn-add {
-  background: #00ffa1;
-  color: #0f0f1e;
-  box-shadow: 0 0 20px rgba(0, 255, 161, 0.2);
+.btn-add-game {
+  background-color: #00e997;
+  color: #000000;
 }
 
-.btn-remove {
-  background: #e90505;
-  color: #0f0f1e;
-  box-shadow: 0 0 20px rgba(255, 2, 2, 0.2);
-}
-
-.btn-add:hover {
-  background: #00d68f;
+.btn-add-game:hover {
+  background-color: #00ff9f;
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 255, 161, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 233, 151, 0.4);
 }
 
-.btn-rank {
-  background: transparent;
+.btn-remove-game {
+  background-color: #d32f2f;
+  color: #ffffff;
+}
+
+.btn-remove-game:hover {
+  background-color: #f44336;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(211, 47, 47, 0.4);
+}
+
+.btn-rate-game {
+  background-color: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
 }
 
-.user-evaluation {
-  color: #fff;
+.btn-rate-game:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
-.btn-rank:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #ffffff;
+.login-prompt {
+  font-size: 15px;
+  color: #e0e0e0;
+  margin: 0;
+  line-height: 1.6;
 }
 
-.visual-card {
-  overflow: hidden;
-}
-
-.login-message {
-  color: #ffffff;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  text-align: center;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  border: 1px dashed rgba(255, 255, 255, 0.1);
-  font-family: "Poppins";
-}
-
-.login-message a {
-  color: #00de92;
+.login-prompt a {
+  color: #00e997;
+  text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: color 0.2s ease;
 }
 
-.login-message a:hover {
-  color: #00ffaa;
-  filter: drop-shadow(0 0 5px rgba(0, 222, 146, 0.4));
+.login-prompt a:hover {
+  color: #036e49;
+  text-decoration: underline;
 }
 
-@media (max-width: 968px) {
-  .content-wrapper {
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 32px 0;
+  color: #ffffff;
+}
+
+.modal-stars {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.btn-submit-rating {
+  width: 100%;
+  padding: 12px 24px;
+  background-color: #00e997;
+  color: #000000;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-submit-rating:hover {
+  background-color: #00ff9f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 233, 151, 0.4);
+}
+
+.game-loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #a0a0a0;
+}
+
+@media (max-width: 1024px) {
+  .game-details-container {
+    padding: 40px 24px;
+  }
+
+  .game-details-content {
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+  }
+
+  .game-title {
+    font-size: 36px;
+  }
+
+  .game-description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-details-container {
+    padding: 32px 16px;
+  }
+
+  .game-details-content {
     grid-template-columns: 1fr;
-    text-align: center;
-    gap: 2rem;
+    gap: 24px;
   }
 
-  .game-info {
-    align-items: center;
+  .game-poster-wrapper {
+    position: relative;
+    top: 0;
   }
 
-  .meta-data {
-    justify-content: center;
-    border-left: none;
-    border-bottom: 2px solid #00ffa1;
-    padding-left: 0;
-    padding-bottom: 1rem;
+  .game-poster {
+    width: 100%;
+    max-width: 100%;
   }
 
-  .game-info h1 {
-    font-size: 2.5rem;
+  .game-title {
+    font-size: 28px;
   }
 
-  .visual-card {
-    display: none;
+  .game-ratings {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .rating-number {
+    font-size: 24px;
+  }
+
+  .user-rating-number {
+    font-size: 24px;
+  }
+
+  .game-meta {
+    padding: 16px 0;
+    gap: 12px;
+  }
+
+  .game-description {
+    font-size: 15px;
+  }
+
+  .game-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-add-game,
+  .btn-remove-game,
+  .btn-rate-game {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .login-prompt {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-details-container {
+    padding: 24px 12px;
+  }
+
+  .game-title {
+    font-size: 22px;
+  }
+
+  .game-ratings {
+    gap: 16px;
+  }
+
+  .rating-label,
+  .meta-label {
+    font-size: 11px;
+  }
+
+  .rating-star,
+  .user-rating-star {
+    font-size: 20px;
+  }
+
+  .rating-number,
+  .user-rating-number {
+    font-size: 20px;
+  }
+
+  .genre-badge {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .meta-value {
+    font-size: 14px;
+  }
+
+  .game-description {
+    font-size: 14px;
+  }
+
+  .btn-add-game,
+  .btn-remove-game,
+  .btn-rate-game {
+    padding: 12px 16px;
+    font-size: 13px;
   }
 }

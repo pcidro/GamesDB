@@ -1,4 +1,4 @@
-export async function getPopularGames(page = 1, pageSize = 30) {
+export async function getPopularGames(page = 1, pageSize = 21) {
   const apiKey = import.meta.env.VITE_RAWG_KEY;
   const url = `https://api.rawg.io/api/games?key=${apiKey}&page=${page}&page_size=${pageSize}`;
 

@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { loadGame } from "../api";
@@ -41,12 +41,11 @@ const Gamedetails = () => {
   }, [id]);
 
   if (!game) {
-    return <p className="carregando-jogo">Carregando detalhes do jogo...</p>;
+    return <p className="game-loading">Carregando detalhes do jogo...</p>;
   }
 
   function saveGame() {
     const minhaLista = localStorage.getItem("@games");
-
     let gamesSalvos = JSON.parse(minhaLista) || [];
 
     const hasGame = gamesSalvos.some((gamesalvo) => {
@@ -57,7 +56,7 @@ const Gamedetails = () => {
     gamesSalvos.push(game);
     localStorage.setItem("@games", JSON.stringify(gamesSalvos));
     setIsSaved(true);
-    alert("Jogo Salvo com sucesso!");
+    alert("Jogo salvo com sucesso!");
   }
 
   function removeGame() {
@@ -92,86 +91,127 @@ const Gamedetails = () => {
   }
 
   if (loading) return null;
-  return (
-    <section className="game-hero">
-      <div className="hero-background">
-        <img src={game.background_image} alt={`Background de ${game.name}`} />
-        <div className="hero-overlay"></div>
-      </div>
-      <div className="content-wrapper">
-        <div className="game-info">
-          <div className="badges">
-            {game.genres?.slice(0, 3).map((genre) => (
-              <span key={genre.id} className="badge">
-                {genre.name}
-              </span>
-            ))}
 
-            {game.rating && (
-              <span className="badge rating">{game.rating} ★</span>
-            )}
-            {userRating > 0 && (
-              <div className="user-evaluation">
-                <span>
-                  Sua avaliação: <strong>{userRating} / 5</strong>
-                </span>
+  return (
+    <section className="game-details-section">
+      <div className="game-background-wrapper">
+        <img
+          src={game.background_image}
+          alt={game.name}
+          className="game-background-image"
+        />
+        <div className="game-background-overlay"></div>
+      </div>
+
+      <div className="game-details-container">
+        <div className="game-details-content">
+          <div className="game-poster-wrapper">
+            <img
+              src={game.background_image}
+              alt={`Capa de ${game.name}`}
+              className="game-poster"
+            />
+          </div>
+
+          <div className="game-info-wrapper">
+            <h1 className="game-title">{game.name}</h1>
+
+            <div className="game-ratings">
+              {game.rating && (
+                <div className="rating-item">
+                  <span className="rating-label">RATING</span>
+                  <div className="rating-value">
+                    <span className="rating-star">★</span>
+                    <span className="rating-number">{game.rating}</span>
+                    <span className="rating-max">/5</span>
+                  </div>
+                </div>
+              )}
+
+              {userRating > 0 && (
+                <div className="rating-item">
+                  <span className="rating-label">SUA AVALIAÇÃO</span>
+                  <div className="rating-value">
+                    <span className="user-rating-star">★</span>
+                    <span className="user-rating-number">{userRating}</span>
+                    <span className="rating-max">/5</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {game.genres && game.genres.length > 0 && (
+              <div className="game-genres">
+                {game.genres.slice(0, 5).map((genre) => (
+                  <span key={genre.id} className="genre-badge">
+                    {genre.name}
+                  </span>
+                ))}
               </div>
             )}
-          </div>
-          <h1>{game.name}</h1>
-          <div className="infos">
-            {game.released && (
-              <span>
-                <strong>Lançamento:</strong> {game.released}
-              </span>
-            )}
-            {game.developers && game.developers[0] && (
-              <span>
-                <strong>Desenvolvido por:</strong> {game.developers[0].name}
-              </span>
-            )}
-          </div>
-          <p className="description">{game.description_raw?.slice(0, 414)}</p>
-          <div className="actions">
-            {usuario ? (
-              <>
-                {isSaved ? (
-                  <button onClick={removeGame} className="btn-remove">
-                    Remover dos meus jogos
-                  </button>
-                ) : (
-                  <button onClick={saveGame} className="btn-add">
-                    Adcionar aos meus jogos
-                  </button>
-                )}
-                <button onClick={() => setOpenModal(true)} className="btn-rank">
-                  Rankear Jogo
-                </button>
-              </>
-            ) : (
-              <p className="login-message">
-                Faça <Link to="/login">Login</Link> ou{" "}
-                <Link to="/login/criar">Crie</Link> uma conta para rankear seus
-                jogos.
+
+            <div className="game-meta">
+              {game.released && (
+                <div className="meta-item">
+                  <span className="meta-label">Lançamento</span>
+                  <span className="meta-value">{game.released}</span>
+                </div>
+              )}
+
+              {game.developers && game.developers[0] && (
+                <div className="meta-item">
+                  <span className="meta-label">Desenvolvedor</span>
+                  <span className="meta-value">{game.developers[0].name}</span>
+                </div>
+              )}
+            </div>
+
+            {game.description_raw && (
+              <p className="game-description">
+                {game.description_raw.slice(0, 414)}
               </p>
             )}
-            <Modal onClose={() => setOpenModal(false)} isOpen={openModal}>
-              <h2 className="avaliar-title">
-                O que você achou de {game.name}?{" "}
-              </h2>
-              <div>
-                <Stars value={userRating} onChange={setUserRating} />
-              </div>
-              <button onClick={handleRating} className="btn-avaliar">
-                Enviar avaliação
-              </button>
-            </Modal>
+
+            <div className="game-actions">
+              {usuario ? (
+                <>
+                  {isSaved ? (
+                    <button onClick={removeGame} className="btn-remove-game">
+                      Remover dos meus jogos
+                    </button>
+                  ) : (
+                    <button onClick={saveGame} className="btn-add-game">
+                      Adicionar aos meus jogos
+                    </button>
+                  )}
+                  <button
+                    onClick={() => setOpenModal(true)}
+                    className="btn-rate-game"
+                  >
+                    Rankear jogo
+                  </button>
+                </>
+              ) : (
+                <p className="login-prompt">
+                  Faça <Link to="/login">Login</Link> ou{" "}
+                  <Link to="/login/criar">Crie</Link> uma conta para rankear
+                  seus jogos.
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
-      <div className="visual-card">
-        <img src={game.background_image} alt={`Capa de ${game.name}`} />
-      </div>
+
+      <Modal onClose={() => setOpenModal(false)} isOpen={openModal}>
+        <h2 className="modal-title">O que você achou de {game.name}?</h2>
+        <div className="modal-stars">
+          <Stars value={userRating} onChange={setUserRating} />
+        </div>
+        <button onClick={handleRating} className="btn-submit-rating">
+          Enviar avaliação
+        </button>
+      </Modal>
     </section>
   );
 };

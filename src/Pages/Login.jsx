@@ -4,7 +4,6 @@ import LoginForm from "./Loginform";
 import LoginCreate from "./LoginCreate";
 import LoginPasswordLost from "./LoginPasswordLost";
 import NotFound from "./NotFound.jsx";
-import Home from "./Home.jsx";
 
 const Login = () => {
   return (
