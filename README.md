@@ -8,7 +8,7 @@
 
 ## 📌 Sobre o projeto
 
-Esse projeto foi criado pensando em fornecer um espaço para fãns de jogos poderem de forma simples e fácil pesquisarem qualquer jogo, podendo adicionarem aos seus favoritos e também dar nota a eles.
+Esse projeto foi criado pensando em fornecer um espaço para fãs de jogos poderem de forma simples e fácil pesquisarem qualquer jogo, podendo adicionarem aos seus favoritos e também dar nota a eles.
 
 ---
 
@@ -97,8 +97,6 @@ npm run dev
 
 ### Aprendizados
 
-O principal foi aprender a lidar melhor com estados globais usando Context API — principalmente carrinho, busca e pedidos. Foi extremamente gratificante conseguir implementar tais funcionalidades de forma correta e assertiva, da forma como o mercado utiliza, e me sinto muito mais preparado para fazer novos projetos com estados cada vez mais complexos e desafiadores.
-
-Outra parte que deu trabalho foi a responsividade, principalmente o header. Tive que ajustar bastante grid, tamanhos e comportamento em telas menores.
-
-No geral, foi um projeto que me deixou bem mais confortável pra construir coisas mais complexas.
+Meu maior aprendizado neste projeto foi a realização de requisições HTTP para APIs externas, cuidando para que os dados sejam tratados da maneira correta e exibidos para o úsuario.
+Utilizei o Context API para trafegar informações de autenticação e favoritos por toda a aplicação de forma otimizada.
+Também aprendi bastante sobre salvar e resgatar itens do localStorage.
